@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="struts_blank" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>google calendar api sample</display-name>
+
+    <!-- ================================================================================= -->
+    <!--                                                                 Context Parameter -->
+    <!--                                                                 ================= -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext*.xml</param-value>
+    </context-param>
+
+    <!-- ================================================================================= -->
+    <!--                                                                    Servlet Filter -->
+    <!--                                                                    ============== -->
+
+    <!-- Springでrequestスコープを利用できるようにする -->
+    <filter>
+        <filter-name>requestContextFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+
+	<!-- Struts2 -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <!-- ================================================================================= -->
+    <!--                                                                    Filter Mapping -->
+    <!--                                                                    ============== -->
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- ================================================================================= -->
+    <!--                                                                          listener -->
+    <!--                                                                          ======== -->
+	<!-- Spring 設定ファイル読込 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+	<!-- for @Autowired HttpServletRequest -->
+    <listener>
+         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+</web-app>

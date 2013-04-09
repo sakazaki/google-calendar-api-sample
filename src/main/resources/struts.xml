@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<!-- 文字コード -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+
+	<!-- Bean管理に Spring を使う -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+
+	<!-- Convention関連 -->
+	<constant name="struts.convention.action.suffix" value="Action"/>
+	<constant name="struts.convention.action.mapAllMatches" value="true"/>
+	<constant name="struts.convention.action.packages" value="jp.bizreach.sample.googlecalendarapi.action"/>
+
+</struts>
