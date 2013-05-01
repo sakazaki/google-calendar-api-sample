@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -41,18 +42,13 @@ public class GoogleApiComponent {
 		HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 	}
 
-	public void getCalendar() throws IOException {
+	public List<CalendarListEntry> getCalendar() throws IOException {
 		Credential credential = authorize();
 		Calendar client =
 				new com.google.api.services.calendar.Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
 						.setApplicationName("sample application").build();
 		CalendarList calendarList = client.calendarList().list().execute();
-		for (CalendarListEntry entry : calendarList.getItems()) {
-			String calendarId = entry.getId();
-			String calendarTitle = entry.getSummary();
-			System.out.println("calendar id = " + calendarId);
-			System.out.println("calendar title = " + calendarTitle);
-		}
+		return calendarList.getItems();
 	}
 
 	private Credential authorize() throws IOException {
